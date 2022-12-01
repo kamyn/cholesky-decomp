@@ -10,7 +10,7 @@ for idx in 1:lastindex(ns)
     local n = ns[idx]
     local A = 100*rand(n, n)
     A = A'*A # symmetric positive definite matrix
-    BenchmarkTools.DEFAULT_PARAMETERS.seconds = 1
+    BenchmarkTools.DEFAULT_PARAMETERS.seconds = n/10
     t = @benchmark CholeskyDecomp.decomposition($A)
     medians[idx] = time(median(t)) / 1000000000
 end
